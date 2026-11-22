@@ -3,77 +3,61 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f6f7fb">
-    <meta name="description" content="A friendly AI companion for Sinhala and English.">
-    <title>Lumi AI — Your everyday companion</title>
+    <meta name="theme-color" content="#061316">
+    <meta name="description" content="Talk with Lumi AI in Sinhala or English.">
+    <title>Lumi AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <div class="app-shell">
-      <header class="topbar">
-        <a class="brand" href="/" aria-label="Lumi AI home">
-          <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none">
-              <path d="M16 3.5 18.9 12l8.6 3-8.6 2.9-2.9 8.6-2.9-8.6-8.6-2.9 8.6-3L16 3.5Z" fill="currentColor"/>
-              <path d="m25.4 4.5 1.2 3.2 3.2 1.2-3.2 1.1-1.2 3.3-1.1-3.3-3.3-1.1 3.3-1.2 1.1-3.2Z" fill="currentColor" opacity=".65"/>
-            </svg>
-          </span>
-          <span class="brand-name">lumi<span>ai</span></span>
-        </a>
-        <div class="topbar-actions">
-          <span class="language-pill"><span class="status-dot"></span> Sinhala &amp; English</span>
-          <button class="new-chat-button" id="new-chat" type="button" aria-label="Start a new chat">
-            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-            <span>New chat</span>
-          </button>
-        </div>
-      </header>
-
-      <main class="chat-layout">
-        <section class="conversation" aria-label="Conversation with Lumi AI">
-          <div class="conversation-scroll" id="conversation-scroll">
-            <div class="welcome" id="welcome">
-              <div class="welcome-icon" aria-hidden="true">
-                <svg viewBox="0 0 48 48" fill="none">
-                  <path d="m24 5 4.2 12.3L40.5 22l-12.3 4.2L24 38.5l-4.2-12.3L7.5 22l12.3-4.7L24 5Z" fill="currentColor"/>
-                  <path d="m38 8 1.6 4.4L44 14l-4.4 1.6L38 20l-1.6-4.4L32 14l4.4-1.6L38 8Z" fill="currentColor" opacity=".55"/>
-                </svg>
-              </div>
-              <p class="eyebrow">YOUR EVERYDAY AI COMPANION</p>
-              <h1>Ayubowan! <span>ආයුබෝවන්!</span></h1>
-              <p class="welcome-copy">I'm Lumi AI. Ask me anything in Sinhala or English — I'm here to help.</p>
-              <div class="suggestions" aria-label="Try asking">
-                <button class="suggestion" type="button" data-prompt="Help me plan a productive day">Help me plan my day <span>↗</span></button>
-                <button class="suggestion" type="button" data-prompt="Explain artificial intelligence in simple Sinhala">සරලව AI ගැන කියන්න <span>↗</span></button>
-                <button class="suggestion" type="button" data-prompt="Give me a simple Python project idea">A Python project idea <span>↗</span></button>
-              </div>
-            </div>
-            <div class="messages" id="messages" aria-live="polite"></div>
-          </div>
-
-          <div class="composer-area">
-            <p class="error-message" id="error-message" role="alert" hidden></p>
-            <form class="composer" id="chat-form">
-              <label class="sr-only" for="message-input">Message Lumi AI</label>
-              <textarea id="message-input" name="message" rows="1" maxlength="12000" placeholder="Message Lumi AI... / Lumi AI ට පණිවිඩයක් යවන්න..." required></textarea>
-              <div class="composer-footer">
-                <span class="composer-hint">Enter to send <span class="hint-divider">·</span> Shift + Enter for a new line</span>
-                <button class="send-button" id="send-button" type="submit" aria-label="Send message">
-                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 15.8V4.2M5.5 8.7 10 4.2l4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-              </div>
-            </form>
-            <footer class="footer">Lumi AI can make mistakes. Check important information. <span>·</span> Powered by Gemini</footer>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" defer></script>
+    <main class="face-only">
+      <button class="visualizer" id="mic-button" data-state="idle" type="button" aria-label="Start talking to Lumi AI" aria-describedby="keyboard-shortcuts">
+        <span class="visualizer-grid" aria-hidden="true"></span>
+        <span class="face-halo" aria-hidden="true"></span>
+        <svg class="ai-face" viewBox="0 0 280 250" aria-hidden="true">
+          <defs>
+            <linearGradient id="face-stroke" x1="30" y1="30" x2="250" y2="230" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#b5fff6"/><stop offset=".48" stop-color="#40e7d2"/><stop offset="1" stop-color="#4f9cff"/>
+            </linearGradient>
+            <radialGradient id="face-glow"><stop stop-color="#35e4d4" stop-opacity=".2"/><stop offset="1" stop-color="#35e4d4" stop-opacity="0"/></radialGradient>
+          </defs>
+          <ellipse cx="140" cy="127" rx="120" ry="115" fill="url(#face-glow)"/>
+          <g class="face-lines" fill="none" stroke="url(#face-stroke)" stroke-linecap="round" stroke-linejoin="round">
+            <path class="face-outline" d="M140 20c-52 0-88 38-88 96 0 58 34 106 88 117 54-11 88-59 88-117 0-58-36-96-88-96Z"/>
+            <path d="M140 21v211M52 116h176M65 72l150 112M215 72 65 184M76 45l128 164M204 45 76 209"/>
+            <path d="M52 116c24-22 49-33 74-31 6 1 11 3 14 6 3-3 8-5 14-6 25-2 50 9 74 31"/>
+            <path d="M67 149c22 9 44 14 65 14 3 0 6-1 8-3 2 2 5 3 8 3 21 0 43-5 65-14"/>
+            <path d="M111 111c-10-6-21-6-31 1m89-1c10-6 21-6 31 1"/>
+            <path d="M119 181c13 8 29 8 42 0m-21-18v25"/>
+            <path d="M91 96 111 111 91 127m98-31-20 15 20 16"/>
+            <path d="m99 57 12 54 29-20 29 20 12-54M70 128l21 21-13 25m132-46-21 21 13 25"/>
+          </g>
+          <g class="face-nodes" fill="#adfff4">
+            <circle cx="140" cy="20" r="2"/><circle cx="52" cy="116" r="2"/><circle cx="228" cy="116" r="2"/>
+            <circle cx="140" cy="233" r="2"/><circle cx="111" cy="111" r="2"/><circle cx="169" cy="111" r="2"/>
+            <circle cx="140" cy="160" r="2"/><circle cx="140" cy="187" r="2"/>
+          </g>
+        </svg>
+        <span class="visualizer-orbit orbit-one" aria-hidden="true"></span>
+        <span class="visualizer-orbit orbit-two" aria-hidden="true"></span>
+      </button>
+      <p class="sr-only" id="visualizer-status" role="status" aria-live="polite">Ready</p>
+      <p class="sr-only" id="keyboard-shortcuts">Tap the face to speak. Press L to switch language, M to mute or unmute voice, T to type, and Escape for a new conversation.</p>
+      <button class="corner-mic" id="corner-mic" type="button" aria-label="Start talking to Lumi AI" title="Talk to Lumi AI">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="9" y="3" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <form class="text-fallback" id="chat-form" hidden>
+        <label class="sr-only" for="message-input">Type a message for Lumi AI</label>
+        <textarea id="message-input" name="message" rows="1" maxlength="12000"></textarea>
+        <button class="send-button" id="send-button" type="submit" aria-label="Send message">Send</button>
+      </form>
+      <p class="sr-only" id="error-message" role="alert" hidden></p>
+    </main>
     <script src="/app.js" defer></script>
   </body>
 </html>

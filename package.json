@@ -6,7 +6,8 @@
   "description": "A bilingual Sinhala and English AI assistant powered by Gemini.",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "test": "node --test",
+    "start": "nodemon server.js"
   },
   "engines": {
     "node": ">=20"
